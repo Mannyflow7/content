@@ -494,10 +494,10 @@ script:
       name: pageSize
     description: Gets a list of groups
     name: zscaler-get-usergroups
+  dockerimage: demisto/python:2.7.18.27799
   runonce: false
   script: ''
   subtype: python2
-  dockerimage: demisto/python:2.7.18.27799
   type: python
 fromversion: 5.0.0
 tests:

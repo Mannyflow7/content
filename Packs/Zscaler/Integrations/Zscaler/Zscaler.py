@@ -6,6 +6,8 @@ import demistomock as demisto  # noqa: F401
 import requests
 from CommonServerPython import *  # noqa: F401
 
+register_module_line('Zscaler', 'start', __line__())
+
 
 ''' IMPORTS '''
 
@@ -435,7 +437,8 @@ def url_lookup(args):
         if len(data['urlClassifications']) == 0:
             data['urlClassifications'] = ''
         else:
-            data['urlClassifications'] = ''.join(data['urlClassifications'])
+            if len(data['urlClassifications']) >= 1:
+                data['urlClassifications'] = ', '.join(data['urlClassifications'])
             ioc_context['urlClassifications'] = data['urlClassifications']
             if data['urlClassifications'] == 'MISCELLANEOUS_OR_UNKNOWN':
                 score = 0
@@ -1101,3 +1104,5 @@ def main():
 # python2 uses __builtin__ python3 uses builtins
 if __name__ in ("__builtin__", "builtins", "__main__"):
     main()
+
+register_module_line('Zscaler', 'end', __line__())
