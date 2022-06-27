@@ -12,3 +12,6 @@ When key algorithms are specified, the SSH connection will be established with t
 Currently, OpenSSH keys are not supported. Only RSA keys (.PEM files) are supported.
 In order to create an RSA based key with ssh-keygen, use **ssh-keygen -p -m PEM -f <file_name>**.
 In case access is required to an instance in the cloud, use the PEM file provided by the cloud provider.
+
+---
+[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/remote-access-v2)

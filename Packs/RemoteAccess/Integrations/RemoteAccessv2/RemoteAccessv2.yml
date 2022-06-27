@@ -14,9 +14,10 @@ configuration:
   type: 9
 - additionalinfo: Requires an additional password as an argument to run any command
     of this module.
+  display: ''
   displaypassword: Additional Password
-  name: additional_password
   hiddenusername: true
+  name: additional_password
   required: false
   type: 9
 - additionalinfo: A comma-separated list of ciphers to use. If none of the specified
@@ -33,32 +34,21 @@ configuration:
   name: key_algorithms
   required: false
   type: 0
-description: This integration transfers files between Cortex XSOAR and a remote machine and executes commands on the remote machine.
+description: This integration transfers files between Cortex XSOAR and a remote machine
+  and executes commands on the remote machine.
 display: RemoteAccess v2
 name: RemoteAccess v2
 script:
   commands:
   - arguments:
-    - default: false
-      description: Command to run on the remote machine.
-      isArray: false
+    - description: Command to run on the remote machine.
       name: cmd
       required: true
-      secret: false
-    - default: false
-      description: Password required to match the Additional Password parameter if
+    - description: Password required to match the Additional Password parameter if
         it was supplied to run the command.
-      isArray: false
       name: additional_password
-      required: false
-      secret: false
-    - default: false
-      description: Timeout for command in seconds.
-      isArray: false
+    - description: Timeout for command in seconds.
       name: timeout
-      required: false
-      secret: false
-    deprecated: false
     description: Run the specified command on the remote system with SSH.
     execution: true
     name: ssh
@@ -76,89 +66,53 @@ script:
       description: Command that was run.
       type: String
   - arguments:
-    - default: false
-      description: Entry ID of the file to be copied from Cortex XSOAR to the remote
+    - description: Entry ID of the file to be copied from Cortex XSOAR to the remote
         machine.
-      isArray: false
       name: entry_id
-      required: false
-      secret: false
-    - default: false
-      description: Destination of the path of the copied file in the remote machine.
+    - description: Destination of the path of the copied file in the remote machine.
         Defaults to the `entry_id` file path if not specified.
-      isArray: false
       name: destination_path
-      required: false
-      secret: false
-    - default: false
-      description: Password required to match the Additional Password parameter if
+    - description: Password required to match the Additional Password parameter if
         it was supplied to run the command.
-      isArray: false
       name: additional_password
-      required: false
-      secret: false
-    - default: false
-      description: Timeout for command in seconds.
-      isArray: false
+    - description: Timeout for command in seconds.
       name: timeout
-      required: false
-      secret: false
-    - default: false
-      description: Destination of the directory to copy the file to in the remote
+    - description: Destination of the directory to copy the file to in the remote
         machine.
-      isArray: false
       name: dest-dir
-      required: false
-      secret: false
-    - default: false
-      description: Entry ID of the file to be copied from Cortex XSOAR to the remote
+    - description: Entry ID of the file to be copied from Cortex XSOAR to the remote
         machine. (Deprecated. Use entry_id instead).
-      isArray: false
       name: entry
-      required: false
-      secret: false
-    deprecated: false
+    - auto: PREDEFINED
+      description: uses sftp instead of scp to copy
+      name: use_sftp
+      predefined:
+      - 'True'
+      - 'False'
     description: Copies the given file from Cortex XSOAR to the remote machine.
-    execution: false
     name: copy-to
   - arguments:
-    - default: false
-      description: Path of the file in the remote machine to be copied to Cortex XSOAR.
-      isArray: false
+    - description: Path of the file in the remote machine to be copied to Cortex XSOAR.
       name: file_path
-      required: false
-      secret: false
-    - default: false
-      description: Name of the file to be copied to Cortex XSOAR. Defaults to the
+    - description: Name of the file to be copied to Cortex XSOAR. Defaults to the
         file name in `file_path` if not specified. For example, if `file_path` is
         "a/b/c.txt", the file name will be c.txt.
-      isArray: false
       name: file_name
-      required: false
-      secret: false
-    - default: false
-      description: Password. Required to match the Additional Password parameter if
+    - description: Password. Required to match the Additional Password parameter if
         it was supplied in order to run the command.
-      isArray: false
       name: additional_password
-      required: false
-      secret: false
-    - default: false
-      description: Timeout for command in seconds.
-      isArray: false
+    - description: Timeout for command in seconds.
       name: timeout
-      required: false
-      secret: false
-    - default: false
-      description: Path of the file in the remote machine to be copied to Cortex XSOAR.
+    - description: Path of the file in the remote machine to be copied to Cortex XSOAR.
         (Deprecated. Use file_path instead).
-      isArray: false
       name: file
-      required: false
-      secret: false
-    deprecated: false
+    - auto: PREDEFINED
+      description: Use SFTP instead of scp to copy
+      name: use_sftp
+      predefined:
+      - 'True'
+      - 'False'
     description: Copies the given file from the remote machine to Cortex XSOAR.
-    execution: false
     name: copy-from
     outputs:
     - contextPath: File.Name
@@ -190,14 +144,10 @@ script:
         file entries).
       type: String
   dockerimage: demisto/netmiko:1.0.0.24037
-  feed: false
-  isfetch: false
-  longRunning: false
-  longRunningPort: false
   runonce: false
-  script: '-'
+  script: ''
   subtype: python3
   type: python
+fromversion: 6.0.0
 tests:
 - RemoteAccessTest
-fromversion: 6.0.0
