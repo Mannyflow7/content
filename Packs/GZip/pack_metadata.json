@@ -1,6 +1,6 @@
 {
     "name": "GZip",
-    "description": "",
+    "description": "Use this pacak to GZip and UnGZip files.",
     "support": "community",
     "currentVersion": "1.0.0",
     "author": "Sharat Patil",
